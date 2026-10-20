@@ -24,6 +24,8 @@ The side photo is accepted and checked, but no measurement uses it yet. MiDaS de
 | `measurement/estimator.py` | Measurements and their per-measurement status |
 | `measurement/geometry.py` | Pixel scale, silhouette width, ellipse circumference |
 | `measurement/depth.py` | MiDaS depth (not used by the API) |
+| `benchmark/` | Dataset and benchmark kit: `python -m benchmark` |
+| `docs/` | Benchmark guide, data collection protocol, data dictionary |
 | `tests/` | `unittest` suite |
 
 ## How to run
@@ -35,6 +37,10 @@ python -m unittest -v      # runs the tests; no network needed
 ```
 
 The API runs on CPU and makes no network calls; photos are processed in memory and are neither stored nor logged.
+
+## Measuring accuracy
+
+`python -m benchmark` scores the API against tape measurements of consented people, kept in a dataset folder outside this repository. Start with [docs/benchmark.md](docs/benchmark.md); photos and tape measurements are collected as described in [docs/data-collection-protocol.md](docs/data-collection-protocol.md), and every column is defined in [docs/data-dictionary.md](docs/data-dictionary.md).
 
 ---
 

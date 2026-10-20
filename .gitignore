@@ -3,5 +3,8 @@
 __pycache__/
 *.pyc
 
+# Measurement datasets hold personal data; keep them outside the repository
+/data/
+
 # Personal Claude Code settings
 .claude/settings.local.json

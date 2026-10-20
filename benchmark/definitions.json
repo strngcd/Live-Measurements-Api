@@ -1,0 +1,116 @@
+{
+  "version": "1",
+  "note": "Draft definitions. Align them with ISO 8559-1 and with the merchants' own measuring methods before collecting data, then bump the version.",
+  "reference_measurements": [
+    {
+      "name": "stature",
+      "description": "Standing height, barefoot, heels together, looking straight ahead: floor to the top of the head.",
+      "plausible_cm": [100, 250],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "shoulder_width",
+      "description": "Across the back from the left to the right shoulder point (the bony tip of each shoulder), following the body surface.",
+      "plausible_cm": [25, 65],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "arm_length",
+      "description": "From the shoulder point down the outside of the straight, relaxed arm to the wrist bone.",
+      "plausible_cm": [40, 90],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "chest_circumference",
+      "description": "Horizontal around the fullest part of the chest or bust, under the armpits, breathing normally.",
+      "plausible_cm": [60, 180],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "waist_circumference",
+      "description": "Horizontal around the natural waist: the narrowest part of the torso between the lowest rib and the top of the hip bone.",
+      "plausible_cm": [45, 180],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "hip_circumference",
+      "description": "Horizontal around the fullest part of the buttocks, feet together.",
+      "plausible_cm": [60, 190],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "neck_circumference",
+      "description": "Around the base of the neck, just below the Adam's apple.",
+      "plausible_cm": [25, 60],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "thigh_circumference",
+      "description": "Horizontal around the fullest part of the upper thigh, just below the crotch.",
+      "plausible_cm": [30, 100],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "outside_leg_length",
+      "description": "From the natural waist at the side of the body straight down to the floor, barefoot.",
+      "plausible_cm": [70, 135],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "inside_leg_length",
+      "description": "From the crotch down the inside of the leg to the floor, barefoot.",
+      "plausible_cm": [55, 100],
+      "repeat_tolerance_cm": 1.0
+    }
+  ],
+  "comparisons": [
+    {
+      "api_name": "shoulder_width",
+      "reference": "shoulder_width",
+      "definitions": "differ",
+      "note": "The API measures a straight line between shoulder-joint landmarks (x 1.1); the tape follows the back between the shoulder points."
+    },
+    {
+      "api_name": "arm_length",
+      "reference": "arm_length",
+      "definitions": "differ",
+      "note": "The API measures only the vertical drop from the shoulder to the wrist landmark."
+    },
+    {
+      "api_name": "trouser_length",
+      "reference": "outside_leg_length",
+      "definitions": "differ",
+      "note": "The API measures hip joint to ankle landmark; the tape measures waist to floor, so a large systematic gap is expected."
+    },
+    {
+      "api_name": "chest_circumference",
+      "reference": "chest_circumference",
+      "definitions": "same",
+      "note": ""
+    },
+    {
+      "api_name": "waist",
+      "reference": "waist_circumference",
+      "definitions": "same",
+      "note": ""
+    },
+    {
+      "api_name": "hip",
+      "reference": "hip_circumference",
+      "definitions": "same",
+      "note": ""
+    },
+    {
+      "api_name": "neck",
+      "reference": "neck_circumference",
+      "definitions": "same",
+      "note": ""
+    },
+    {
+      "api_name": "thigh_circumference",
+      "reference": "thigh_circumference",
+      "definitions": "same",
+      "note": ""
+    }
+  ]
+}
