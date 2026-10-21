@@ -1,6 +1,6 @@
-# Data collection protocol (draft, version 1)
+# Data collection protocol (draft, version 2)
 
-How to collect consented photos and tape measurements for the benchmark. Record `v1` in `capture_protocol_version` and `measuring_protocol_version`. This is a draft: review it with the merchants and a lawyer before the first participant, and bump the version whenever it changes.
+How to collect consented photos and tape measurements for the benchmark. Record `v2` in `capture_protocol_version` and `measuring_protocol_version`. This is a draft: review it with the merchants and a lawyer before the first participant, and bump the version whenever it changes.
 
 ## Before anyone is photographed
 
@@ -49,16 +49,17 @@ Record `consent_version`, `consent_date`, `consent_scope` and `delete_by` in `pe
 
 ## Tape measurements
 
-**Equipment:** a non-stretch tailor's tape marked in millimetres, a stadiometer or a wall tape with a set square for height, and a mirror or second person to check that the tape is level.
+**Equipment:** a non-stretch tailor's tape marked in millimetres, a stadiometer or a wall tape with a set square for height, a mirror or second person to check that the tape is level, a narrow elastic band for the waist, small removable stickers for landmarks, and a hard, flat chair.
 
 **Person:** the same fitted clothing as in the photos, barefoot, standing straight with feet together and arms relaxed, breathing normally.
 
 **Procedure**
-1. Take every measurement in the Reference measurements table of [data-dictionary.md](data-dictionary.md), in that order. Keep the tape snug without pressing in, and horizontal for circumferences.
-2. Read to the nearest 0.1 cm, and height to the nearest 0.5 cm.
-3. Complete a full round (`repeat` 1), then a second full round (`repeat` 2) without looking at the first values.
-4. If `python -m benchmark validate` warns that two repeats differ by more than their tolerance, take a third round of that measurement (`repeat` 3); the benchmark then uses the median.
-5. Measure on the same day as the photos, under the same `session_id`.
+1. Mark the landmarks first. Tie the elastic band around the natural waist; it settles at the narrowest point when the person bends to each side. Put stickers on both shoulder points, the side neck points, the bone at the back of the base of the neck and the top of each hip bone, and for women on the bust points.
+2. Take every measurement in the Reference measurements table of [data-dictionary.md](data-dictionary.md), in that order. Leave those marked "Women" blank for men. `body_rise` comes last, seated. Keep the tape snug without pressing in, and horizontal for circumferences.
+3. Read to the nearest 0.1 cm, and height to the nearest 0.5 cm.
+4. Complete a full round (`repeat` 1), then a second full round (`repeat` 2) without looking at the first values.
+5. If `python -m benchmark validate` warns that two repeats differ by more than their tolerance, take a third round of that measurement (`repeat` 3); the benchmark then uses the median.
+6. Measure on the same day as the photos, under the same `session_id`.
 
 ## Data entry, storage and deletion
 

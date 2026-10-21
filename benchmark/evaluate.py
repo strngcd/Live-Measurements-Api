@@ -89,7 +89,8 @@ def technical_error(pairs):
     return math.sqrt(sum((a - b) ** 2 for a, b in pairs) / (2 * len(pairs)))
 
 
-def evaluate(dataset, predictions, version, splits=("test",), tolerances=None, min_group_size=DEFAULT_MIN_GROUP_SIZE):
+def evaluate(dataset, predictions, version, splits=("test",), tolerances=None, min_group_size=DEFAULT_MIN_GROUP_SIZE,
+             tolerance_source=None):
     """The error report for one algorithm version on the chosen splits, as a dict."""
     tolerances = tolerances or {}
     samples = _selected_samples(dataset, splits)
@@ -129,6 +130,7 @@ def evaluate(dataset, predictions, version, splits=("test",), tolerances=None, m
         "dataset": os.path.basename(dataset.path),
         "definitions_version": dataset.definitions["version"],
         "splits": list(splits),
+        "tolerance_source": tolerance_source,
         "n_people": len({s["person_id"] for s in samples}),
         "n_samples": len(samples),
         "requests": {
@@ -215,6 +217,10 @@ def report_markdown(report):
         f"- {report['n_people']} people, {report['n_samples']} photo sets; code revision "
         f"{', '.join(report['code_revisions']) or 'unknown'}",
         f"- Requests: {requests['accepted']} accepted; rejected: {rejected}; not predicted: {requests['not_predicted']}",
+    ]
+    if report.get("tolerance_source"):
+        lines.append(f"- Tolerances: {report['tolerance_source']}")
+    lines += [
         "",
         "Error = API − tape, in cm. A positive bias means the API reads high.",
     ]

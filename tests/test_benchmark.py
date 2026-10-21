@@ -19,6 +19,7 @@ from benchmark.__main__ import main
 from benchmark.dataset import TABLE_FILES, Dataset, assign_splits, create_dataset
 from benchmark.definitions import load_definitions
 from benchmark.evaluate import compare, evaluate, report_markdown, technical_error
+from benchmark.garments import GARMENTS_PATH, garment_tolerances, load_garments
 from benchmark.predict import load_predictions, predict, write_predictions
 from benchmark.schema import data_dictionary, table_fields
 from measurement.estimator import MEASUREMENT_NAMES
@@ -253,6 +254,21 @@ class EvaluateTest(DatasetCase):
         self.assertEqual(shoulder["largest_errors"][0]["sample_id"], "S3")
         self.assertEqual(report["requests"], {"accepted": 3, "rejected": {"INVALID_POSE": 1}, "not_predicted": 0})
 
+    def test_evaluate_with_a_garments_tolerances(self):
+        write_predictions(self.root, list(self.predictions.values()), "0.2.0")
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            main(["evaluate", self.root, "--version", "0.2.0", "--garment", "mens_shirt"])
+        with open(os.path.join(self.root, "reports", "0.2.0-test-mens_shirt.json"), encoding="utf-8") as f:
+            report = json.load(f)
+        shoulder = self.measurement(report, "shoulder_width")
+        self.assertEqual(shoulder["tolerance_cm"], 1)
+        self.assertAlmostEqual(shoulder["within_tolerance"], 1 / 3)
+        self.assertEqual(self.measurement(report, "waist")["tolerance_cm"], 2)
+        self.assertEqual(report["tolerance_source"], "garment mens_shirt (garments version 1)")
+        with self.assertRaises(SystemExit):
+            main(["evaluate", self.root, "--version", "0.2.0", "--garment", "kaftan"])
+
     def test_missing_predictions_are_counted_by_reason(self):
         report = evaluate(self.dataset, self.predictions, "0.2.0")
         self.assertEqual(self.measurement(report, "waist")["missing"], {"rejected: INVALID_POSE": 1, "unsupported": 3})
@@ -322,8 +338,37 @@ class DocsAndCliTest(DatasetCase):
 
     def test_data_dictionary_doc_is_up_to_date(self):
         with open(os.path.join(REPO, "docs", "data-dictionary.md"), encoding="utf-8") as f:
-            self.assertEqual(f.read(), data_dictionary(self.definitions),
+            self.assertEqual(f.read(), data_dictionary(self.definitions, load_garments(self.definitions)),
                              "regenerate it: python -m benchmark dictionary > docs/data-dictionary.md")
+
+    def test_garment_tolerances_follow_the_comparisons(self):
+        garments = load_garments(self.definitions)
+        self.assertEqual(garment_tolerances(garments, self.definitions, "mens_trousers"),
+                         {"trouser_length": 2, "hip": 2, "thigh_circumference": 2})
+        self.assertEqual(garment_tolerances(garments, self.definitions, "netela_gabi"), {})
+        with self.assertRaises(ValueError):
+            garment_tolerances(garments, self.definitions, "kaftan")
+
+    def test_garments_reject_bad_entries(self):
+        with open(GARMENTS_PATH, encoding="utf-8") as f:
+            garments = json.load(f)
+        kemis = garments["garments"][0]
+        first = kemis["measurements"][0]
+        broken = [
+            [dict(first, reference="elbow")],
+            [first, first],
+            [dict(first, source="guess")],
+            [dict(first, priority="maybe")],
+            [dict(first, tolerance_cm=-1)],
+            [dict(first, ease_cm="2")],
+        ]
+        path = os.path.join(self.tmp, "garments.json")
+        for measurements in broken:
+            with self.subTest(measurements=measurements):
+                with open(path, "w", encoding="utf-8") as f:
+                    json.dump(dict(garments, garments=[dict(kemis, measurements=measurements)]), f)
+                with self.assertRaises(ValueError):
+                    load_garments(self.definitions, path)
 
     def test_comparisons_name_real_api_outputs(self):
         for comparison in self.definitions["comparisons"]:

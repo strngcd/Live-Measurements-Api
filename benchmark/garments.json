@@ -1,0 +1,89 @@
+{
+  "version": "1",
+  "note": "Measurements each garment needs. `merchant` entries come from the merchants' requirements forms (2026-10-20 and 2026-10-21); `standard` entries are usual in tailoring for the same cut and wait for a merchant to confirm them and give a tolerance. Tolerance is the largest error that still sews into a good fit without alterations; ease is what the tailor adds to the body measurement.",
+  "garments": [
+    {
+      "name": "habesha_kemis",
+      "label": "Habesha kemis",
+      "worn_by": "women",
+      "fit": "fitted",
+      "measurements": [
+        {"reference": "chest_circumference", "source": "merchant", "priority": "must", "tolerance_cm": 1, "ease_cm": 1},
+        {"reference": "under_bust_circumference", "source": "merchant", "priority": "must", "tolerance_cm": 1, "ease_cm": 1},
+        {"reference": "waist_circumference", "source": "merchant", "priority": "must", "tolerance_cm": 1, "ease_cm": 1},
+        {"reference": "shoulder_width", "source": "merchant", "priority": "must", "tolerance_cm": 1, "ease_cm": 0.5},
+        {"reference": "arm_length", "source": "merchant", "priority": "must", "tolerance_cm": 1, "ease_cm": 1},
+        {"reference": "front_waist_length", "source": "merchant", "priority": "must", "tolerance_cm": null, "ease_cm": null},
+        {"reference": "waist_to_ankle_length", "source": "merchant", "priority": "must", "tolerance_cm": 1, "ease_cm": 2},
+        {"reference": "neck_base_circumference", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "Sets the neckline; usual on dressmaking lists."},
+        {"reference": "hip_circumference", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "Usual on dress lists; matters for fitted and knee-length skirts."},
+        {"reference": "upper_arm_circumference", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "The sleeves are sewn in and must clear the upper arm."},
+        {"reference": "wrist_circumference", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "For long sleeves that narrow at the wrist."},
+        {"reference": "back_waist_length", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "Balances the front and back of a structured bodice."},
+        {"reference": "neck_to_bust_point_length", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "Places the bust darts of a structured bodice."},
+        {"reference": "bust_point_separation", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "Spaces the bust darts of a structured bodice."},
+        {"reference": "waist_to_knee_length", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "Skirt length for the knee-length style."}
+      ]
+    },
+    {
+      "name": "mens_shirt",
+      "label": "Men's traditional shirt",
+      "worn_by": "men",
+      "fit": "varies",
+      "measurements": [
+        {"reference": "chest_circumference", "source": "merchant", "priority": "must", "tolerance_cm": 1, "ease_cm": 2},
+        {"reference": "waist_circumference", "source": "merchant", "priority": "must", "tolerance_cm": 2, "ease_cm": 1},
+        {"reference": "shoulder_width", "source": "merchant", "priority": "must", "tolerance_cm": 1, "ease_cm": 1},
+        {"reference": "neck_base_circumference", "source": "merchant", "priority": "must", "tolerance_cm": 1, "ease_cm": 1},
+        {"reference": "arm_length", "source": "merchant", "priority": "must", "tolerance_cm": 1, "ease_cm": 1},
+        {"reference": "upper_arm_circumference", "source": "merchant", "priority": "must", "tolerance_cm": 1, "ease_cm": 1},
+        {"reference": "front_waist_length", "source": "merchant", "priority": "must", "tolerance_cm": null, "ease_cm": null},
+        {"reference": "hip_circumference", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "The knee-length shirt must pass over the seat."},
+        {"reference": "wrist_circumference", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "Sets the cuff."},
+        {"reference": "back_waist_length", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "With waist to knee, gives the back length of a knee-length shirt."},
+        {"reference": "waist_to_knee_length", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "Shirt length for the usual knee-length cut."}
+      ]
+    },
+    {
+      "name": "mens_trousers",
+      "label": "Men's traditional trousers",
+      "worn_by": "men",
+      "fit": "semi_fitted",
+      "measurements": [
+        {"reference": "trouser_waist_circumference", "source": "merchant", "priority": "must", "tolerance_cm": 2, "ease_cm": 1},
+        {"reference": "hip_circumference", "source": "merchant", "priority": "must", "tolerance_cm": 2, "ease_cm": 2},
+        {"reference": "thigh_circumference", "source": "merchant", "priority": "must", "tolerance_cm": 2, "ease_cm": 3},
+        {"reference": "trouser_waist_to_ankle_length", "source": "merchant", "priority": "must", "tolerance_cm": 2, "ease_cm": 3},
+        {"reference": "inside_leg_length", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "Usual on trouser lists; with the outside length it sets the crotch depth."},
+        {"reference": "body_rise", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "Sets how far the crotch sits below the waistband."},
+        {"reference": "knee_circumference", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "Fitted, jodhpur-style cut only."},
+        {"reference": "calf_circumference", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "Fitted, jodhpur-style cut only."},
+        {"reference": "ankle_circumference", "source": "standard", "priority": "nice", "tolerance_cm": null, "ease_cm": null,
+         "why": "Fitted, jodhpur-style cut only."}
+      ]
+    },
+    {
+      "name": "netela_gabi",
+      "label": "Netela or gabi",
+      "worn_by": "anyone",
+      "fit": "loose",
+      "measurements": []
+    }
+  ]
+}

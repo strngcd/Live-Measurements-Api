@@ -7,6 +7,7 @@ import sys
 from .dataset import DEFAULT_SPLIT_FRACTIONS, SPLITS, Dataset, assign_splits, create_dataset
 from .definitions import load_definitions
 from .evaluate import DEFAULT_MIN_GROUP_SIZE, compare, comparison_markdown, evaluate, report_markdown
+from .garments import garment_tolerances, load_garments
 from .schema import data_dictionary
 
 
@@ -56,7 +57,10 @@ def main(argv=None):
     evaluate_cmd.add_argument("dataset")
     evaluate_cmd.add_argument("--version", required=True, help="algorithm version whose predictions to score")
     evaluate_cmd.add_argument("--split", action="append", choices=SPLITS, help="split(s) to score (default: test)")
-    evaluate_cmd.add_argument("--tolerances", help="JSON file mapping API output names to tolerances in cm")
+    tolerance_args = evaluate_cmd.add_mutually_exclusive_group()
+    tolerance_args.add_argument("--tolerances", help="JSON file mapping API output names to tolerances in cm")
+    tolerance_args.add_argument("--garment", help="use one garment's tolerances from benchmark/garments.json, "
+                                                  "e.g. habesha_kemis")
     evaluate_cmd.add_argument("--min-group-size", type=int, default=DEFAULT_MIN_GROUP_SIZE)
 
     compare_cmd = commands.add_parser("compare", help="compare two algorithm versions on the same samples")
@@ -96,14 +100,23 @@ def main(argv=None):
         from .predict import load_predictions
 
         dataset = load_checked(args.dataset)
-        tolerances = None
+        tolerances, tolerance_source = None, None
         if args.tolerances:
             with open(args.tolerances, encoding="utf-8") as f:
                 tolerances = json.load(f)
+            tolerance_source = os.path.basename(args.tolerances)
+        elif args.garment:
+            garments = load_garments(dataset.definitions)
+            try:
+                tolerances = garment_tolerances(garments, dataset.definitions, args.garment)
+            except ValueError as e:
+                sys.exit(str(e))
+            tolerance_source = f"garment {args.garment} (garments version {garments['version']})"
         splits_used = tuple(args.split or ["test"])
         report = evaluate(dataset, load_predictions(args.dataset, args.version), args.version,
-                          splits_used, tolerances, args.min_group_size)
-        path = write_report(args.dataset, f"{args.version}-{'-'.join(splits_used)}", report, report_markdown(report))
+                          splits_used, tolerances, args.min_group_size, tolerance_source)
+        name = f"{args.version}-{'-'.join(splits_used)}" + (f"-{args.garment}" if args.garment else "")
+        path = write_report(args.dataset, name, report, report_markdown(report))
         print(f"Wrote {path}")
     elif args.command == "compare":
         from .predict import load_predictions
@@ -115,7 +128,8 @@ def main(argv=None):
         name = f"compare-{args.candidate}-vs-{args.base}-{'-'.join(splits_used)}"
         print(f"Wrote {write_report(args.dataset, name, result, comparison_markdown(result))}")
     elif args.command == "dictionary":
-        sys.stdout.write(data_dictionary(load_definitions()))
+        definitions = load_definitions()
+        sys.stdout.write(data_dictionary(definitions, load_garments(definitions)))
     return 0
 
 

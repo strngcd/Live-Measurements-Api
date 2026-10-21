@@ -1,65 +1,173 @@
 {
-  "version": "1",
-  "note": "Draft definitions. Align them with ISO 8559-1 and with the merchants' own measuring methods before collecting data, then bump the version.",
+  "version": "2",
+  "note": "Version 2 merges the merchants' requirements forms (2026-10-20 and 2026-10-21) with measurements usual in tailoring for the same garments. `iso_8559_1` names the closest ISO 8559-1:2017 clause as cited by Bodygram's measurement definitions; the standard itself has not been checked. Measurements marked 'Women' are left blank for men.",
   "reference_measurements": [
     {
       "name": "stature",
       "description": "Standing height, barefoot, heels together, looking straight ahead: floor to the top of the head.",
+      "iso_8559_1": null,
       "plausible_cm": [100, 250],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "neck_base_circumference",
+      "description": "Around the base of the neck where a collar sits, over the bone at the back of the neck and the top of the breastbone at the front.",
+      "iso_8559_1": "5.3.3",
+      "plausible_cm": [25, 65],
       "repeat_tolerance_cm": 1.0
     },
     {
       "name": "shoulder_width",
       "description": "Across the back from the left to the right shoulder point (the bony tip of each shoulder), following the body surface.",
+      "iso_8559_1": "5.4.3",
       "plausible_cm": [25, 65],
-      "repeat_tolerance_cm": 1.0
-    },
-    {
-      "name": "arm_length",
-      "description": "From the shoulder point down the outside of the straight, relaxed arm to the wrist bone.",
-      "plausible_cm": [40, 90],
       "repeat_tolerance_cm": 1.0
     },
     {
       "name": "chest_circumference",
       "description": "Horizontal around the fullest part of the chest or bust, under the armpits, breathing normally.",
+      "iso_8559_1": "5.3.4",
       "plausible_cm": [60, 180],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "under_bust_circumference",
+      "description": "Women: horizontal around the ribcage directly below the bust.",
+      "iso_8559_1": "5.3.8",
+      "plausible_cm": [55, 160],
       "repeat_tolerance_cm": 1.0
     },
     {
       "name": "waist_circumference",
       "description": "Horizontal around the natural waist: the narrowest part of the torso between the lowest rib and the top of the hip bone.",
+      "iso_8559_1": "5.3.10",
       "plausible_cm": [45, 180],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "trouser_waist_circumference",
+      "description": "Horizontal around the body at the top of the hip bones, where men's traditional trousers sit.",
+      "iso_8559_1": null,
+      "plausible_cm": [50, 190],
       "repeat_tolerance_cm": 1.0
     },
     {
       "name": "hip_circumference",
       "description": "Horizontal around the fullest part of the buttocks, feet together.",
+      "iso_8559_1": "5.3.13",
       "plausible_cm": [60, 190],
-      "repeat_tolerance_cm": 1.0
-    },
-    {
-      "name": "neck_circumference",
-      "description": "Around the base of the neck, just below the Adam's apple.",
-      "plausible_cm": [25, 60],
       "repeat_tolerance_cm": 1.0
     },
     {
       "name": "thigh_circumference",
       "description": "Horizontal around the fullest part of the upper thigh, just below the crotch.",
+      "iso_8559_1": "5.3.20",
       "plausible_cm": [30, 100],
       "repeat_tolerance_cm": 1.0
     },
     {
-      "name": "outside_leg_length",
-      "description": "From the natural waist at the side of the body straight down to the floor, barefoot.",
-      "plausible_cm": [70, 135],
+      "name": "knee_circumference",
+      "description": "Around the knee at the middle of the kneecap, leg straight, weight on both feet.",
+      "iso_8559_1": "5.3.22",
+      "plausible_cm": [25, 65],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "calf_circumference",
+      "description": "Horizontal around the fullest part of the calf, weight on both feet.",
+      "iso_8559_1": "5.3.24",
+      "plausible_cm": [20, 65],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "ankle_circumference",
+      "description": "Around the narrowest part of the lower leg, just above the ankle bones.",
+      "iso_8559_1": null,
+      "plausible_cm": [15, 40],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "upper_arm_circumference",
+      "description": "Around the fullest part of the upper arm, arm relaxed at the side, tape at right angles to the arm.",
+      "iso_8559_1": "5.3.16",
+      "plausible_cm": [15, 60],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "wrist_circumference",
+      "description": "Around the wrist over the wrist bones.",
+      "iso_8559_1": "5.3.19",
+      "plausible_cm": [10, 30],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "arm_length",
+      "description": "From the shoulder point down the outside of the straight, relaxed arm to the wrist bone.",
+      "iso_8559_1": "5.7.8",
+      "plausible_cm": [40, 90],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "neck_to_bust_point_length",
+      "description": "Women: from the side neck point (where the shoulder meets the neck) straight down to the bust point, the most prominent point of the bust.",
+      "iso_8559_1": null,
+      "plausible_cm": [15, 45],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "bust_point_separation",
+      "description": "Women: straight across from one bust point to the other.",
+      "iso_8559_1": null,
+      "plausible_cm": [10, 30],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "front_waist_length",
+      "description": "From the side neck point (where the shoulder meets the neck) down over the bust or chest point to the natural waist.",
+      "iso_8559_1": null,
+      "plausible_cm": [30, 70],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "back_waist_length",
+      "description": "From the bone at the back of the base of the neck straight down the spine to the natural waist.",
+      "iso_8559_1": "5.4.5",
+      "plausible_cm": [30, 60],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "waist_to_knee_length",
+      "description": "From the natural waist at the side of the body, over the hip, straight down to the middle of the kneecap.",
+      "iso_8559_1": null,
+      "plausible_cm": [40, 80],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "waist_to_ankle_length",
+      "description": "From the natural waist at the side of the body, over the hip, straight down to the outer ankle bone.",
+      "iso_8559_1": null,
+      "plausible_cm": [70, 130],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "trouser_waist_to_ankle_length",
+      "description": "From the top of the hip bone at the side of the body, over the hip, straight down to the outer ankle bone.",
+      "iso_8559_1": null,
+      "plausible_cm": [60, 125],
       "repeat_tolerance_cm": 1.0
     },
     {
       "name": "inside_leg_length",
-      "description": "From the crotch down the inside of the leg to the floor, barefoot.",
-      "plausible_cm": [55, 100],
+      "description": "From the crotch straight down the inside of the leg to the level of the outer ankle bone.",
+      "iso_8559_1": "5.7.6",
+      "plausible_cm": [45, 95],
+      "repeat_tolerance_cm": 1.0
+    },
+    {
+      "name": "body_rise",
+      "description": "Sitting upright on a hard, flat chair: at the side of the body, from the top of the hip bone straight down to the chair seat.",
+      "iso_8559_1": null,
+      "plausible_cm": [15, 45],
       "repeat_tolerance_cm": 1.0
     }
   ],
@@ -78,9 +186,9 @@
     },
     {
       "api_name": "trouser_length",
-      "reference": "outside_leg_length",
+      "reference": "trouser_waist_to_ankle_length",
       "definitions": "differ",
-      "note": "The API measures hip joint to ankle landmark; the tape measures waist to floor, so a large systematic gap is expected."
+      "note": "The API measures from the hip-joint landmark to the ankle landmark; the tape starts higher, at the top of the hip bone, and follows the hip, so a systematic gap is expected."
     },
     {
       "api_name": "chest_circumference",
@@ -102,7 +210,7 @@
     },
     {
       "api_name": "neck",
-      "reference": "neck_circumference",
+      "reference": "neck_base_circumference",
       "definitions": "same",
       "note": ""
     },
